@@ -1,8 +1,8 @@
 import streamlit as st
-st.set_page_config(layout="wide")
+st.set_page_config(layout='wide')
 col1, col2 = st.columns(2)
 with col1:
-    st.image("images/photo1.jpg",width=450)
+    st.image("images/photo1.jpg",width=350)
 with col2:
     st.title("Mogilicharla Veerendra Sai")
     content='''Highly motivated and results-oriented professional with a strong 
@@ -11,3 +11,5 @@ with col2:
     by strategically utilizing my skillset. Committed to continuous learning and improvement, 
     striving to become a key player in the company's success.'''
     st.info(content)
+c='''Below are some apps built by me . Just have a look .Feel Free to contact me!'''
+st.subheader(c)
