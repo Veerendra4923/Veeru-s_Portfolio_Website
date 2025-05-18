@@ -15,4 +15,4 @@ from: {x}
 
     if z:
         se.send_emailo(ms)
-        st.info('Your email has been sent sucessfully!')
+

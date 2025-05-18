@@ -1,21 +1,29 @@
 import smtplib as smtp
-import ssl as ssl
-
-from dotenv import load_dotenv
-import os
-
-load_dotenv()  # This loads .env from current working directory
+import ssl
+import streamlit as st
+from email.message import EmailMessage
 
 
-def send_emailo(msg):
-    host="smtp.gmail.com"
-    port=465
-    password=os.getenv("PASSWORD")
-    sender='mogilicharlaveerendrasai@gmail.com'
-    receiver='mogilicharlaveerendrasai@gmail.com'
+def send_emailo(user_message):
+    host = "smtp.gmail.com"
+    port = 465
+    sender = 'mogilicharlaveerendrasai@gmail.com'
+    receiver = 'mogilicharlaveerendrasai@gmail.com'
+    password = st.secrets["email"]["password"]
+
+    # Create the message
+    msg = EmailMessage()
+    msg["Subject"] = "New message from your portfolio website"
+    msg["From"] = sender
+    msg["To"] = receiver
+    msg.set_content(user_message)
+
     context = ssl.create_default_context()
 
-
-    with smtp.SMTP_SSL(host,port,context=context) as server:
-        server.login(sender,password)
-        server.sendmail(sender,receiver,msg)
+    try:
+        with smtp.SMTP_SSL(host, port, context=context) as server:
+            server.login(sender, password)
+            server.send_message(msg)
+        st.success("✅ Email sent successfully!")
+    except Exception as e:
+        st.error(f"❌ Failed to send email: {e}")
