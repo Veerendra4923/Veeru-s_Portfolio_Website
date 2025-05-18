@@ -1,9 +1,10 @@
 import pandas
 import streamlit as st
+import os
 st.set_page_config(layout='wide')
 col1,col2 = st.columns([1,2])
 with col1:
-    st.image("images/photo1.jpg",width=350)
+    st.image(os.path.abspath("images/photo1.jpg"), width=350)
 with col2:
     st.title("Mogilicharla Veerendra Sai")
     i='''A Computer Science Graduate At Vasireddy Venkatadri International Technological University.
